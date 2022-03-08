@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Tasty Wifi" content="width=device-width, initial-scale=1.0"/>
+    <title>Tasty Wifi</title>
+
+    <!-- Bulma CSS 링크 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <!-- post_save CSS 링크 -->
+    <link rel="stylesheet" type="text/css" href="../static/css/post_save.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    {#    post_save js#}
+    <script src="../static/js/post_save.js"></script>
+
+</head>
+<body>
+<div class="wrap">
+
+    {#    상단에 배너 이미지를 누르면 메인페이지로 되돌아감#}
+    <div class="banner" onclick="window.location.href = '/'">
+    </div>
+    <div class="btn-big_background">
+        <div class="btn-background">
+            <div class="upload_btn">
+                {#                버튼을 누르면 클라이언트에 입력된 정보를 서버로 전달, 저장#}
+                <button onclick="posting()" class="button is-link" id="posting-btn">업로드</button>
+            </div>
+        </div>
+    </div>
+    <div class="big_wrap">
+        <div class="image_wrap">
+            <!--    이미지 박스-->
+            <img src="{{url_for('static', filename='image/noimage.gif')}}" class="rounded mx-auto d-block" alt="..." id="img-preview">
+
+            <!--    이미지 파일 업로드-->
+            <div class="image_upload">
+                <div class="file is-info has-name">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="resume">
+                        <span class="file-cta">
+                            <input id="file" class="file_btn" type="file" name="file" onchange="preview(this)">
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="input-name">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">가게명</span>
+                </div>
+                <input id="title" type="text" class="form-control" aria-label="Default"
+                       aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">주 소</span>
+                </div>
+                <input id="address" type="text" class="form-control" aria-label="Default"
+                       aria-describedby="inputGroup-sizing-default">
+            </div>
+        </div>
+        <div class="input-box">
+            <textarea id="comment" class="textarea" placeholder="코멘트를 남겨주세요!" rows="8"></textarea>
+        </div>
+        <div class="star">
+            <div class="select is-normal">
+                <select id="star">
+                    <option>-------------- 별점을 선택해주세요! --------------</option>
+                    <option>⭐</option>
+                    <option>⭐⭐</option>
+                    <option>⭐⭐⭐</option>
+                    <option>⭐⭐⭐⭐</option>
+                    <option>⭐⭐⭐⭐⭐</option>
+                </select>
+            </div>
+        </div>
+
+{#        해시태그 입력 박스#}
+        <div class="tag_input">
+            <input id="tag" class="input is-primary" type="text" placeholder="#해시태그">
+        </div>
+
+{#        해시태그를 입력 후 엔터를 누르면 아래 아이콘으로 표시#}
+        <div class="tag_icon">
+            <div class="tags are-medium">
+                <span class="tag is-normal">#해시태그</span>
+                <span class="tag is-normal">#해시태그</span>
+                <span class="tag is-normal">#해시태그</span>
+                <span class="tag is-normal">#해시태그</span>
+                <span class="tag is-normal">#해시태그</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

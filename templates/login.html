@@ -49,18 +49,12 @@
                     margin: auto;
                 }
 
-                .title {
-                    font-weight: 800;
-                    font-size: 3rem;
-                    font-family: 'Hahmlet', serif;
-
+                .pjlogo {
+                    padding: 0px 0px 20px 0px;
+                    max-width: 750px;
+                    margin: 0px 0px 0px 0px;
                 }
-
-                .subtitle {
-                    font-size: 2rem;
-                    font-family: 'Noto Sans KR', sans-serif;
-
-                }
+                
 
                 .is-sparta {
                     color: #e8344e !important;
@@ -80,6 +74,14 @@
 
                 .help {
                     color: gray;
+                }
+
+
+                .navimg {
+                    padding: 0px 0px 0px 0px;
+                    max-width: 750px;
+                    margin: 0px 0px 0px 0px;
+
                 }
             </style>
 
@@ -211,7 +213,7 @@
                         return;
                     }
                     $("#help-id").addClass("is-loading")
-                    $.ajax({     {#중복확인 하는 ajax#}
+                    $.ajax({     {# 중복확인 하는 ajax #}
                         type: "POST",
                         url: "/sign_up/check_dup",
                         data: {
@@ -230,12 +232,23 @@
                         }
                     });
                 }
-            </script>
 
+
+
+            </script>
 
         </head>
     <body>
+
+
+
     <div class="wrap">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img class="navimg" src="../static/image/tastywifi_logo.png">
+            </a>
+        </div>
+
         <div class="banner" onclick="window.location.href = '/'">
         </div>
     </div>
@@ -245,6 +258,9 @@
                     <article class="media">
                         <div class="media-content">
                             <div class="content">
+                                <div class="pjlogo">
+                                        <img src="../static/image/tastywifi_logo.png">
+                                </div>
                                 <div class="field has-addons">
                                     <div class="control has-icons-left" style="width:100%">
                                         <input id="input-username" class="input" type="text" placeholder="아이디">

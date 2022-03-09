@@ -71,7 +71,7 @@ function time2str(date) {
     if (time < 7) {
         return parseInt(time) + "일 전"
     }
-    return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+    // return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 }
 
 // 좋아요 숫자 형식
@@ -135,7 +135,7 @@ function get_posts(username) {
                                                         <span>${post['post_comment']}</span>
                                                 </div>
                                             </div>
-                                            <div class="media-right"><small>10분 전</small></div>
+                                            <div class="media-right"><small>${time_before}</small></div>
                                         </article>
                                     </div>`
                     $("#post-box").append(html_temp)

@@ -95,3 +95,10 @@
         .file_btn{
             width: 365px;
         }
+
+        /*이미지 미리보기 파일의 사이즈 제한*/
+         #blah {
+             margin: 10px 0 10px 0;
+             width: 100%;
+             height: 268px;
+         }

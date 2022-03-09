@@ -1,5 +1,6 @@
 import certifi
 from pymongo import MongoClient
+
 ca = certifi.where()
 import jwt
 import datetime
@@ -8,14 +9,14 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 
-
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
 SECRET_KEY = 'SPARTA'
 
-client = MongoClient('mongodb+srv://sparta:sparta@cluster0.whvqu.mongodb.net/cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://sparta:sparta@cluster0.whvqu.mongodb.net/cluster0?retryWrites=true&w=majority',
+                     tlsCAFile=ca)
 db = client.dbsparta
 
 
@@ -43,6 +44,7 @@ def login():
     msg = request.args.get("msg")
     return render_template('login.html', msg=msg)
 
+
 @app.route('/user/<username>')
 def user(username):
     # 각 사용자의 프로필과 글을 모아볼 수 있는 공간
@@ -69,8 +71,8 @@ def sign_in():
 
     if result is not None:
         payload = {
-         'id': username_receive,
-         'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
+            'id': username_receive,
+            'exp': datetime.utcnow() + timedelta(seconds=60 * 60 * 24)  # 로그인 24시간 유지
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256').decode('utf-8')
 
@@ -86,12 +88,12 @@ def sign_up():
     password_receive = request.form['password_give']
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     doc = {
-        "username": username_receive,                               # 아이디
-        "password": password_hash,                                  # 비밀번호
-        "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
-        "profile_pic": "",                                          # 프로필 사진 파일 이름
-        "profile_pic_real": "profile_pics/profile_placeholder.png", # 프로필 사진 기본 이미지
-        "profile_info": ""                                          # 프로필 한 마디
+        "username": username_receive,  # 아이디
+        "password": password_hash,  # 비밀번호
+        "profile_name": username_receive,  # 프로필 이름 기본값은 아이디
+        "profile_pic": "",  # 프로필 사진 파일 이름
+        "profile_pic_real": "profile_pics/profile_placeholder.png",  # 프로필 사진 기본 이미지
+        "profile_info": ""  # 프로필 한 마디
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})
@@ -165,7 +167,6 @@ def get_posts():
         # 문자열로 변환하기
         # DB에서 다 들고 오는데, 작성순서 내림차순(가장 최근)부터 들고 온다, 20개만 들고 옴
 
-
         # DB에 ID 값은 objectID로 저장 되어있는데, 이 값을 항상 str로 바꿔주어야 함.
         #         ID 값은 누가 해당 게시물에 좋아요 등을 눌렀는지 확인할 때 필요
         for post in posts:
@@ -181,6 +182,8 @@ def get_posts():
     #     return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", 'posts': posts})
     # except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
     #     return redirect(url_for("home"))
+
+
 #
 #
 # @app.route('/update_like', methods=['POST'])
@@ -220,6 +223,7 @@ def show_post_save():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login"))
 
+
 # 데이터를 DB에 저장하는 역할
 @app.route('/api/post_save', methods=['POST'])
 def save_post():
@@ -254,9 +258,10 @@ def save_post():
         }
 
         db.mini_post.insert_one(doc)
-        return jsonify({'result':"success", 'msg': '업로드 완료!'})
+        return jsonify({'result': "success", 'msg': '업로드 완료!'})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-            return redirect(url_for("home"))
+        return redirect(url_for("home"))
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

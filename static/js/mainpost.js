@@ -140,7 +140,7 @@ function get_posts(username) {
                                             <div class="media-right">
                                                 <a class="image is-128x128" href="#">
                                                     <img class="is-rounded"
-                                                         src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
+                                                         src="../image/profile_placeholder.png" alt="Image">
                                                 </a>
                                             </div>
                     

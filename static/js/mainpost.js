@@ -100,6 +100,7 @@ function get_posts(username) {
         data: {},
         success: function (response) {
             if (response["result"] == "success") {
+                console.log(response)
                 let posts = response["posts"]
                 for (let i = 0; i < posts.length; i++) {
                     let post = posts[i]

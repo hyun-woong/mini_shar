@@ -112,16 +112,7 @@ function get_posts(username) {
                     const file_url = "/static/image/"
                     let html_temp = `<div class="box" id="${post["_id"]}">
                                         <article class="media">
-<<<<<<< HEAD
-=======
-                                            <div class="media-right">
-                                                <a class="image is-128x128" href="#">
-                                                    <img class="is-rounded"
-                                                         src="${file_url + post['post_file']}" alt="Image">
-                                                </a>
-                                            </div>
-                    
->>>>>>> origin/master
+
                                             <div class="media-content">
                                                 <div class="content">
                                                     <p>

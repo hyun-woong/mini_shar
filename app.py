@@ -103,51 +103,51 @@ def check_dup():
     return jsonify({'result': 'success', 'exists': exists})
 
 
-@app.route('/update_profile', methods=['POST'])
-def save_img():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        username = payload["id"]
-        name_receive = request.form["name_give"]
-        about_receive = request.form["about_give"]
-        new_doc = {
-            "profile_name": name_receive,
-            "profile_info": about_receive
-        }
-        if 'file_give' in request.files:
-            file = request.files["file_give"]
-            filename = secure_filename(file.filename)
-            extension = filename.split(".")[-1]
-            file_path = f"profile_pics/{username}.{extension}"
-            file.save("./static/"+file_path)
-            new_doc["profile_pic"] = filename
-            new_doc["profile_pic_real"] = file_path
-        db.users.update_one({'username': payload['id']}, {'$set':new_doc})
-        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+# @app.route('/update_profile', methods=['POST'])
+# def save_img():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         username = payload["id"]
+#         name_receive = request.form["name_give"]
+#         about_receive = request.form["about_give"]
+#         new_doc = {
+#             "profile_name": name_receive,
+#             "profile_info": about_receive
+#         }
+#         if 'file_give' in request.files:
+#             file = request.files["file_give"]
+#             filename = secure_filename(file.filename)
+#             extension = filename.split(".")[-1]
+#             file_path = f"profile_pics/{username}.{extension}"
+#             file.save("./static/"+file_path)
+#             new_doc["profile_pic"] = filename
+#             new_doc["profile_pic_real"] = file_path
+#         db.users.update_one({'username': payload['id']}, {'$set':new_doc})
+#         return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("home"))
 
 
-@app.route('/posting', methods=['POST'])
-def posting():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.users.find_one({"username": payload["id"]})
-        comment_receive = request.form["comment_give"]
-        date_receive = request.form["date_give"]
-        doc = {
-            "username": user_info["username"],
-            "profile_name": user_info["profile_name"],
-            "profile_pic_real": user_info["profile_pic_real"],
-            "comment": comment_receive,
-            "date": date_receive
-        }
-        db.posts.insert_one(doc)
-        return jsonify({"result": "success", 'msg': '포스팅 성공'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+# @app.route('/posting', methods=['POST'])
+# def posting():
+#     token_receive = request.cookies.get('mytoken')
+#     try:
+#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+#         user_info = db.users.find_one({"username": payload["id"]})
+#         comment_receive = request.form["comment_give"]
+#         date_receive = request.form["date_give"]
+#         doc = {
+#             "username": user_info["username"],
+#             "profile_name": user_info["profile_name"],
+#             "profile_pic_real": user_info["profile_pic_real"],
+#             "comment": comment_receive,
+#             "date": date_receive
+#         }
+#         db.posts.insert_one(doc)
+#         return jsonify({"result": "success", 'msg': '포스팅 성공'})
+#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+#         return redirect(url_for("home"))
 
 
 @app.route("/get_posts", methods=['GET'])
@@ -155,11 +155,12 @@ def get_posts():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
         username_receive = request.args.get("username_give")
         if username_receive == "":
-            posts = list(db.posts.find({}).sort("date", -1).limit(20))
+            posts = list(db.mini_post.find({}).sort("date", -1).limit(20))
         else:
-            posts = list(db.posts.find({"username": username_receive}).sort("date", -1).limit(20))
+            posts = list(db.mini_post.find({"username": username_receive}).sort("date", -1).limit(20))
         # 문자열로 변환하기
         # DB에서 다 들고 오는데, 작성순서 내림차순(가장 최근)부터 들고 온다, 20개만 들고 옴
 
@@ -168,11 +169,17 @@ def get_posts():
         #         ID 값은 누가 해당 게시물에 좋아요 등을 눌렀는지 확인할 때 필요
         for post in posts:
             post["_id"] = str(post["_id"])
-            post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
-            post["heart_by_me"] = bool(db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", 'posts': posts})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
+
+    #     for post in posts:
+    #         post["_id"] = str(post["_id"])
+    #         post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
+    #         post["heart_by_me"] = bool(db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
+    #     return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", 'posts': posts})
+    # except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+    #     return redirect(url_for("home"))
 #
 #
 # @app.route('/update_like', methods=['POST'])
@@ -242,7 +249,7 @@ def save_post():
             'post_title': title,
             'post_address': address,
             'post_comment': comment,
-            'post_star': star,
+            'post_star': star
         }
 
         db.mini_post.insert_one(doc)

@@ -72,6 +72,15 @@
             <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
         </a>
     </div>
+    {#        logout 버튼#}
+        <section class="section_bar">
+            <div class="container">
+                <h2 class="subtitle">
+                    <button onclick="window.location.href='login.html'; sign_out()" class="button is-text" id="posting-btn">Logout
+                    </button>
+                </h2>
+            </div>
+        </section>
 
     <!--배너-->
     <div class="banner" onclick="window.location.href = '/'">

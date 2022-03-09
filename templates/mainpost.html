@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Tasty Wifi" content="width=device-width, initial-scale=1.0"/>
+    <title>Tasty Wifi</title>
+
+    <!-- Bulma CSS 링크 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+
+    <!-- post_save CSS 링크 -->
+    <link rel="stylesheet" type="text/css" href="../static/css/post_save.css">
+    <!-- main_style css 링크 -->
+    <link href="{{ url_for('static', filename='mystyle.css') }}" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    {#    post_save js#}
+    <script src="../static/js/post_save.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            get_posts()
+        })
+
+    </script>
+
+    <style>
+        .section_bar {
+            max-width: 100vw;
+            margin: auto;
+            float: right;
+            padding-top: 30px;
+        }
+
+        .mycards {
+            margin: 20px auto 0px auto;
+            width: 95%;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+            <!-- 상단 로고 네비게이션 바-->
+        <nav class="navbar is-fixed-top is-white" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="{{ url_for('static', filename='tastywifi_logo1.png') }}">
+                    <strong class="is-sparta"
+                            style="font-family: 'Stylish', sans-serif;font-size: larger;">TastyWifi</strong>
+                </a>
+            </div>
+        </nav>
+        <!--배너-->
+        <div class="banner" onclick="window.location.href = '/'">
+        </div>
+
+        <!-- 섹션  -->
+         <section class="section_bar">
+            <div class="container">
+
+                <h2 class="subtitle">
+                    <button onclick="window.location.href='post_save.html'" class="button is-primary" id="posting-btn">포스팅 추가하기</button>
+                </h2>
+            </div>
+        </section>
+
+        <!--  포스터 -->
+        <section class="section">
+            <div class="mycards">
+                <div id="post-box" class="container">
+                        <div class="box">
+                            <article class="media">
+                                <div class="media-right">
+                                    <a class="image is-128x128" href="#">
+                                        <img class="is-rounded"
+                                             src={{ url_for(filename="/" ) }} alt="Image">
+                                    </a>
+                                </div>
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
+                                            <br>
+                                            글을 적는 칸
+                                        </p>
+                                    </div>
+                                    <p><small>가게명:</small> TastyWifi</p>
+                                    <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
+                                    <p><small>별점:</small> ⭐⭐⭐⭐</p>
+                                    <p><span style="color: blue">#맛집</span></p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                <div id="post-box" class="container">
+                        <div class="box">
+                            <article class="media">
+                                <div class="media-right">
+                                    <a class="image is-128x128" href="#">
+                                        <img class="is-rounded"
+                                             src={{ url_for(filename="/" ) }} alt="Image">
+                                    </a>
+                                </div>
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
+                                            <br>
+                                            글을 적는 칸
+                                        </p>
+                                    </div>
+                                    <p><small>가게명:</small> TastyWifi</p>
+                                    <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
+                                    <p><small>별점:</small> ⭐⭐⭐⭐</p>
+                                    <p><span style="color: blue">#맛집</span></p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                <div id="post-box" class="container">
+                        <div class="box">
+                            <article class="media">
+                                <div class="media-right">
+                                    <a class="image is-128x128" href="#">
+                                        <img class="is-rounded"
+                                             src={{ url_for(filename="/" ) }} alt="Image">
+                                    </a>
+                                </div>
+
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
+                                            <br>
+                                            글을 적는 칸
+                                        </p>
+                                    </div>
+                                    <p><small>가게명:</small> TastyWifi</p>
+                                    <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
+                                    <p><small>별점:</small> ⭐⭐⭐⭐</p>
+                                    <p><span style="color: blue">#맛집</span></p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+
+            </div>
+        </section>
+
+    </div>
+
+
+</body>
+</html>
+

@@ -51,7 +51,7 @@ function posting() {
                 processData: false,
                 success: function (response) {
                     alert(response['msg']);
-                    window.location.href = '/';
+                    window.location.href = 'templates/mainpost.html';
                 },
             });
         }

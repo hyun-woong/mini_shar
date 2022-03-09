@@ -5,6 +5,9 @@
     <meta name="Tasty Wifi" content="width=device-width, initial-scale=1.0"/>
     <title>Tasty Wifi</title>
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Bulma CSS 링크 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
 
@@ -28,14 +31,20 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-    {#    post_save js#}
-    <script src="../static/js/post_save.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-    <script>
+    {#    post_save js#}
+    <script src="{{ url_for('static', filename='mainpost.js') }}"></script>
+
+<script>
         $(document).ready(function () {
             get_posts()
-        })
+
+
+})
     </script>
+
 
     <style>
         .section_bar {
@@ -57,7 +66,7 @@
         <nav class="navbar is-fixed-top is-white" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                    <img src="{{ url_for('static', filename='tastywifi_logo1.png') }}">
+                    <img src="{{ url_for('static', filename='../image/tastywifi_logo1.png') }}">
                     <strong class="is-sparta"
                             style="font-family: 'Stylish', sans-serif;font-size: larger;">TastyWifi</strong>
                 </a>
@@ -86,7 +95,7 @@
                                 <div class="media-right">
                                     <a class="image is-128x128" href="#">
                                         <img class="is-rounded"
-                                             src={{ url_for(filename="/" ) }} alt="Image">
+                                             src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
                                     </a>
                                 </div>
 
@@ -112,7 +121,7 @@
                                 <div class="media-right">
                                     <a class="image is-128x128" href="#">
                                         <img class="is-rounded"
-                                             src={{ url_for(filename="/" ) }} alt="Image">
+                                             src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
                                     </a>
                                 </div>
 
@@ -138,7 +147,7 @@
                                 <div class="media-right">
                                     <a class="image is-128x128" href="#">
                                         <img class="is-rounded"
-                                             src={{ url_for(filename="/" ) }} alt="Image">
+                                             src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
                                     </a>
                                 </div>
 

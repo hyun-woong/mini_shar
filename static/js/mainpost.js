@@ -14,6 +14,7 @@ function toggle_like(post_id, type) {
             success: function (response) {
                 console.log("unlike")
                 $i_like.addClass("fa-heart-o").removeClass("fa-heart")
+                $i_like.addClass("fa-heart-o").removeClass("fa-heart")
                 $a_like.find("span.like-num").text(num2str(response["count"]))
             }
         })
@@ -142,5 +143,5 @@ function get_posts(username) {
 function sign_out() {
             $.removeCookie('mytoken', {path: '/'});
             alert('로그아웃!')
-            window.location.href = "/login"
+            window.location.href = "login"
         }

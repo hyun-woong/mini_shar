@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    bsCustomFileInput.init();
-});
-
 function posting() {
     let file = $('#file')[0].files[0];
     let title = $('#title').val();
@@ -59,23 +55,14 @@ function posting() {
     });
 }
 
-// 첨부한 파일을 미리보는 기능을 제공
-function preview(input) {
-    let imgfile = input.files;
-    let filetype = imgfile[0].type.split('/').pop().toLowerCase();
 
-    if (imgfile && imgfile[0]) {
-        let reader = new FileReader();
+// 업로드한 이미지 파일 미리보기
+function readURL(input){
+    if (input.files && input.files[0]){
+        var reader = new FileReader();
         reader.onload = function (e) {
-            if ($.inArray(filetype, ['jpg', 'jpeg', 'png', 'gif']) == -1) {
-                alert('jpg, jpeg, png, gif 파일만 업로드 해주세요!');
-                $('#img-preview').attr('src', `../static/image/noimage.gif`);
-                $('#posting-btn').attr('disabled', true);
-                return;
-            }
-            $('#img-preview').attr('src', e.target.result);
-            $('#posting-btn').removeAttr('disabled');
-        };
-        reader.readAsDataURL(input.file[0]);
+            $('#blah').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
     }
 }

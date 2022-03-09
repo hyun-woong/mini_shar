@@ -5,6 +5,7 @@ function posting() {
     let comment = $('#comment').val();
     let star = $('#star').val();
     let tag = $('#tag').val();
+    let today = new Date().toISOString();
 
 
     if (file == '') {
@@ -39,6 +40,7 @@ function posting() {
     form_data.append('comment_give', comment);
     form_data.append('star_give', star);
     form_data.append('tag_give', tag);
+    form_data.append('date_give',today);
 
 
     $.ajax({

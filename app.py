@@ -236,6 +236,7 @@ def save_post():
         address = request.form['address_give']
         comment = request.form['comment_give']
         star = request.form['star_give']
+        date_receive = request.form['date_give']
 
         extension = file.filename.split('.')[-1]
 
@@ -254,7 +255,8 @@ def save_post():
             'post_title': title,
             'post_address': address,
             'post_comment': comment,
-            'post_star': star
+            'post_star': star,
+            'date': date_receive
         }
 
         db.mini_post.insert_one(doc)

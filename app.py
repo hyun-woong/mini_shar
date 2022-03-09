@@ -231,6 +231,7 @@ def save_post():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]})
         file = request.files['file_give']
+
         title = request.form['title_give']
         address = request.form['address_give']
         comment = request.form['comment_give']

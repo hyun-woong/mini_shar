@@ -109,12 +109,13 @@ function get_posts(username) {
                     let time_before = time2str(time_post)
                     // let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
                     // let count_heart = post['count_heart']
+                    const file_url = "/static/image/"
                     let html_temp = `<div class="box" id="${post["_id"]}">
                                         <article class="media">
                                             <div class="media-right">
                                                 <a class="image is-128x128" href="#">
                                                     <img class="is-rounded"
-                                                         src="/static/image/${post['post_file']}" alt="Image">
+                                                         src="${file_url + post['post_file']}" alt="Image">
                                                 </a>
                                             </div>
                     

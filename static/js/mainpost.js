@@ -133,6 +133,29 @@ function get_posts(username) {
                                                 </nav>
                                             </div>
                                         </article>
+                                        
+                                        <article class="media">
+                                            <div class="media-right">
+                                                <a class="image is-128x128" href="#">
+                                                    <img class="is-rounded"
+                                                         src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
+                                                </a>
+                                            </div>
+                    
+                                            <div class="media-content">
+                                                <div class="content">
+                                                    <p>
+                                                        <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
+                                                        <br>
+                                                        글을 적는 칸
+                                                    </p>
+                                                </div>
+                                                <p><small>가게명:</small> TastyWifi</p>
+                                                <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
+                                                <p><small>별점:</small> ⭐⭐⭐⭐</p>
+                                                <p><span style="color: blue">#맛집</span></p>
+                                            </div>
+                                        </article>
                                     </div>`
                     $("#post-box").append(html_temp)
                 }
@@ -140,3 +163,10 @@ function get_posts(username) {
         }
     })
 }
+
+// 로그아웃
+function sign_out() {
+            $.removeCookie('mytoken', {path: '/'});
+            alert('로그아웃!')
+            window.location.href = "/login"
+        }

@@ -199,38 +199,56 @@ def get_posts():
 #     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
 #         return redirect(url_for("home"))
 
-# @app.route('/api/post_save', methods=['POST'])
-# def save_post():
-#     file = request.files['file_give']
-#     title = request.form['title_give']
-#     address = request.form['address_give']
-#     comment = request.form['comment_give']
-#     star = request.form['star_give']
-#     tag = request.form['tag_give']
-#
-#     extension = file.filename.split('.')[-1]
-#
-#     today = datetime.now()
-#     mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
-#
-#     filename = f'file-{mytime}'
-#
-#     save_to = f'static/image/{filename}.{extension}'
-#
-#     file.save(save_to)
-#
-#     doc = {
-#         'post_file': f'{filename}.{extension}',
-#         'post_title': title,
-#         'post_address': address,
-#         'post_comment': comment,
-#         'post_star': star,
-#         'post_tag': tag,
-#     }
-#
-#     db.mini_post.insert_one(doc)
-#
-#     return jsonify({'msg':'업로드 완료!'})
+# mainpost 페이지에서 포스팅 추가하기 버튼을 눌렀을 때, post_save.html로 넘어가는 역할
+@app.route('/post_save', methods=['GET'])
+def show_post_save():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        return render_template('post_save.html', user_info=user_info)
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", token_expired="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login"))
+
+# 데이터를 DB에 저장하는 역할
+@app.route('/api/post_save', methods=['POST'])
+def save_post():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        file = request.files['file_give']
+        title = request.form['title_give']
+        address = request.form['address_give']
+        comment = request.form['comment_give']
+        star = request.form['star_give']
+
+        extension = file.filename.split('.')[-1]
+
+        today = datetime.now()
+        mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
+
+        filename = f'file-{mytime}'
+
+        save_to = f'static/image/{filename}.{extension}'
+
+        file.save(save_to)
+
+        doc = {
+            'username': user_info['username'],
+            'post_file': f'{filename}.{extension}',
+            'post_title': title,
+            'post_address': address,
+            'post_comment': comment,
+            'post_star': star,
+        }
+
+        db.mini_post.insert_one(doc)
+        return jsonify({'result':"success", 'msg': '업로드 완료!'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+            return redirect(url_for("home"))
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)

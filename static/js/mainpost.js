@@ -106,29 +106,27 @@ function get_posts(username) {
                     let post = posts[i]
                     let time_post = new Date(post["date"])
                     let time_before = time2str(time_post)
-                    let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
-                    let count_heart = post['count_heart']
+                    // let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
+                    // let count_heart = post['count_heart']
                     let html_temp = `<div class="box" id="${post["_id"]}">
                                         <article class="media">
                                             <div class="media-left">
                                                 <a class="image is-64x64" href="/user/${post['username']}">
-                                                    <img class="is-rounded" src="/static/${post['profile_pic_real']}"
+                                                    <img class="is-rounded" src="/static/${post['post_file']}"
                                                          alt="Image">
                                                 </a>
                                             </div>
                                             <div class="media-content">
                                                 <div class="content">
                                                     <p>
-                                                        <strong>${post['profile_name']}</strong> <small>@${post['username']}</small> <small>${time_before}</small>
+                                                        <strong>${post['post_title']}</strong> <small>@${post['username']}</small> <small>${time_before}</small>
                                                         <br>
-                                                        ${post['comment']}
+                                                        ${post['post_address']} 
                                                     </p>
                                                 </div>
                                                 <nav class="level is-mobile">
                                                     <div class="level-left">
-                                                        <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${post['_id']}', 'heart')">
-                                                            <span class="icon is-small"><i class="fa ${class_heart}"
-                                                                                           aria-hidden="true"></i></span>&nbsp;<span class="like-num">${count_heart}</span>
+                                                        <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${post['_id']}', 'post_star')">                           
                                                         </a>
                                                     </div>
 

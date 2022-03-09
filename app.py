@@ -62,7 +62,6 @@ def user(username):
 @app.route('/sign_in', methods=['POST'])
 def sign_in():
     # 로그인
-
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
 

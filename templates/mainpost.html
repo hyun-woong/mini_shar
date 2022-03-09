@@ -42,31 +42,13 @@
     <script>
         $(document).ready(function () {
             get_posts()
-
-
         })
     </script>
 
-
-    <style>
-        .section_bar {
-            max-width: 100vw;
-            margin: auto;
-            float: right;
-            padding-bottom: 30px;
-        }
-
-        .mycards {
-            margin: 20px auto 0px auto;
-            width: 95%;
-            max-width: 1200px;
-        }
-    </style>
 </head>
 <body>
 <div class="wrap">
     <!-- 상단 로고 네비게이션 바-->
-
     <div class="navbar-brand">
         <a class="navbar-item" href="/">
             <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
@@ -76,7 +58,7 @@
         <section class="section_bar">
             <div class="container">
                 <h2 class="subtitle">
-                    <button onclick="window.location.href='login.html'; sign_out()" class="button is-text" id="posting-btn">Logout
+                    <button onclick="sign_out();" class="button is-text" id="posting-btn">Logout
                     </button>
                 </h2>
             </div>

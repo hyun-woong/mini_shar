@@ -16,6 +16,9 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 
+    {#    main_style CSS#}
+    <link rel="stylesheet" type="text/css" href="../static/css/main_style.css">
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,14 +28,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <!-- cookie js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     {#    post_save js#}
     <script src="../static/js/post_save.js"></script>
+    {# mainpost JavaScript #}
+    <script src="../static/js/mainpost.js"></script>
 
 </head>
 <body>
 <div class="wrap">
-
+    <!-- 상단 로고 네비게이션 바-->
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
+        </a>
+    </div>
+    {#        logout 버튼#}
+        <section class="section_bar">
+            <div class="container">
+                <h2 class="subtitle">
+                    <button onclick="sign_out()" class="button is-text" id="posting-btn">Logout
+                    </button>
+                </h2>
+            </div>
+        </section>
     {#    상단에 배너 이미지를 누르면 메인페이지로 되돌아감#}
     <div class="banner" onclick="window.location.href = '/'">
     </div>

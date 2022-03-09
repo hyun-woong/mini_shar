@@ -47,7 +47,7 @@
     <div class="big_wrap">
         <div class="image_wrap">
             <!--    이미지 박스-->
-            <img src="../static/image/noimage.gif" class="rounded mx-auto d-block" id="img-preview">
+            <img src="../static/image/noimage.gif" alt="your image" class="rounded mx-auto d-block" id="blah">
 
             <!--    이미지 파일 업로드-->
             <div class="image_upload">
@@ -55,7 +55,7 @@
                     <label class="file-label">
                         <input class="file-input" type="file" name="resume">
                         <span class="file-cta">
-                            <input id="file" class="file_btn" type="file" name="file" onchange="preview(this)">
+                            <input id="file" class="file_btn" type="file" name="file" onchange="readURL(this)">
                         </span>
                     </label>
                 </div>

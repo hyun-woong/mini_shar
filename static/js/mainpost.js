@@ -110,50 +110,24 @@ function get_posts(username) {
                     // let count_heart = post['count_heart']
                     let html_temp = `<div class="box" id="${post["_id"]}">
                                         <article class="media">
-                                            <div class="media-left">
-                                                <a class="image is-64x64" href="/user/${post['username']}">
-                                                    <img class="is-rounded" src="/static/${post['post_file']}"
-                                                         alt="Image">
-                                                </a>
-                                            </div>
-                                            <div class="media-content">
-                                                <div class="content">
-                                                    <p>
-                                                        <strong>${post['post_title']}</strong> <small>@${post['username']}</small> <small>${time_before}</small>
-                                                        <br>
-                                                        ${post['post_address']} 
-                                                    </p>
-                                                </div>
-                                                <nav class="level is-mobile">
-                                                    <div class="level-left">
-                                                        <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${post['_id']}', 'post_star')">                           
-                                                        </a>
-                                                    </div>
-
-                                                </nav>
-                                            </div>
-                                        </article>
-                                        
-                                        <article class="media">
                                             <div class="media-right">
                                                 <a class="image is-128x128" href="#">
                                                     <img class="is-rounded"
-                                                         src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
+                                                         src="/static/image/${post['post_file']}" alt="Image">
                                                 </a>
                                             </div>
                     
                                             <div class="media-content">
                                                 <div class="content">
                                                     <p>
-                                                        <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
+                                                        <strong>${post['username']}</strong> <small>@username</small> <small>10분 전</small>
                                                         <br>
-                                                        글을 적는 칸
+                                                        ${post['post_comment']}
                                                     </p>
                                                 </div>
-                                                <p><small>가게명:</small> TastyWifi</p>
-                                                <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
-                                                <p><small>별점:</small> ⭐⭐⭐⭐</p>
-                                                <p><span style="color: blue">#맛집</span></p>
+                                                <p><small>가게명:</small> ${post['post_title']}</p>
+                                                <p><small>주소:</small> ${post['post_address']} </p>
+                                                <p><small>별점:</small> ${post['post_star']}</p>                                         
                                             </div>
                                         </article>
                                     </div>`

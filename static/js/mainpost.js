@@ -111,25 +111,29 @@ function get_posts(username) {
                     // let count_heart = post['count_heart']
                     let html_temp = `<div class="box" id="${post["_id"]}">
                                         <article class="media">
-                                            <div class="media-right">
-                                                <a class="image is-128x128" href="#">
-                                                    <img class="is-rounded"
-                                                         src="/static/image/${post['post_file']}" alt="Image">
-                                                </a>
-                                            </div>
-                    
                                             <div class="media-content">
                                                 <div class="content">
                                                     <p>
-                                                        <strong>${post['username']}</strong> <small>@username</small> <small>10분 전</small>
+                                                        <strong class="is-sparta">${post['username']}</strong> <small>@username</small> 
                                                         <br>
-                                                        ${post['post_comment']}
-                                                    </p>
+                                                    <small>${post['post_title']}</small></p>
                                                 </div>
-                                                <p><small>가게명:</small> ${post['post_title']}</p>
-                                                <p><small>주소:</small> ${post['post_address']} </p>
-                                                <p><small>별점:</small> ${post['post_star']}</p>                                         
+                                                <div class="media-left">
+                                                <a class="image is-128x128" href="#">
+                                                    <img class="is-square"
+                                                         src="/static/image/${post['post_file']}" alt="Image">
+                                                </a>
+                                                </div>
+                                                <p><small>평가:</small> <small>${post['post_star']}</small><br> 
+                                                <small>주소:</small> <small>${post['post_address']}</small> </p>
                                             </div>
+ 
+                                            <div class="media-content">
+                                                <div>     
+                                                        <span>${post['post_comment']}</span>
+                                                </div>
+                                            </div>
+                                            <div class="media-right"><small>10분 전</small></div>
                                         </article>
                                     </div>`
                     $("#post-box").append(html_temp)

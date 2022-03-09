@@ -6,7 +6,8 @@
 }
 
 .is-sparta {
-    color: #e8344e !important;
+    background-color: transparent;
+    border-color: crimson !important;
 }
 
 .button.is-sparta {
@@ -32,7 +33,7 @@ input::-webkit-calendar-picker-indicator {
 
 .image img {
     object-fit:cover;
-    width:100%;
+    width:110%;
     height:100%;
 }
 

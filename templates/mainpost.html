@@ -42,6 +42,8 @@
     <script>
         $(document).ready(function () {
             get_posts()
+
+
         })
     </script>
 
@@ -51,7 +53,7 @@
             max-width: 100vw;
             margin: auto;
             float: right;
-            padding: 10px 0px 20px 0px;
+            padding-bottom: 30px;
         }
 
         .mycards {
@@ -59,56 +61,26 @@
             width: 95%;
             max-width: 1200px;
         }
-
     </style>
 </head>
 <body>
-    <div class="wrap">
-        <!-- 상단 로고 네비게이션 바-->
-            <div class="navbar-brand">
-                <a class="navbar-item" href="/">
-                    <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
-                </a>
-            </div>
-{#        logout 버튼#}
-        <section class="section_bar">
-            <div class="container">
-                <h2 class="subtitle">
-                    <button onclick="window.location.href='login.html'; sign_out()" class="button is-text" id="posting-btn">Logout
-                    </button>
-                </h2>
-            </div>
-        </section>
+<div class="wrap">
+    <!-- 상단 로고 네비게이션 바-->
 
-        <!--배너-->
-        <div class="banner" onclick="window.location.href = '/'">
-        </div>
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
+        </a>
+    </div>
 
-        <!-- 섹션  -->
-        <section class="section_bar">
-            <div class="container">
+    <!--배너-->
+    <div class="banner" onclick="window.location.href = '/'">
+    </div>
 
-                <h2 class="subtitle">
-                    <button onclick="window.location.href='post_save'" class="button is-primary" id="posting-btn">포스팅 추가하기
-                    </button>
-                </h2>
-            </div>
-        </section>
+    <!-- 섹션  -->
+    <section class="section_bar">
+        <div class="container">
 
-        <!--  포스터 -->
-        <section class="section">
-            <div class="mycards">
-                <div id="post-box" class="container">
-                    <div class="box">
-                        <article class="media">
-                            <div class="media-right">
-                                <a class="image is-128x128" href="#">
-                                    <img class="is-rounded"
-                                         src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
-                                </a>
-                            </div>
-
-<<<<<<< HEAD
             <h2 class="subtitle">
                 <button onclick="window.location.href='post_save'" class="button is-primary" id="posting-btn">포스팅 추가하기
                 </button>
@@ -136,25 +108,14 @@
                                     <br>
                                     글을 적는 칸
                                 </p>
-=======
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
-                                        <br>
-                                        글을 적는 칸
-                                    </p>
-                                </div>
-                                <p><small>가게명:</small> TastyWifi</p>
-                                <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
-                                <p><small>별점:</small> ⭐⭐⭐⭐</p>
-                                <p><span style="color: blue">#맛집</span></p>
->>>>>>> 0c555f278c70bcce07051370e3198ee6dff49dbb
                             </div>
-                        </article>
-                    </div>
+                            <p><small>가게명:</small> TastyWifi</p>
+                            <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
+                            <p><small>별점:</small> ⭐⭐⭐⭐</p>
+                            <p><span style="color: blue">#맛집</span></p>
+                        </div>
+                    </article>
                 </div>
-<<<<<<< HEAD
             </div>
             <div id="post-box" class="container">
                 <div class="box">
@@ -173,35 +134,14 @@
                                     <br>
                                     글을 적는 칸
                                 </p>
-=======
-                <div id="post-box" class="container">
-                    <div class="box">
-                        <article class="media">
-                            <div class="media-right">
-                                <a class="image is-128x128" href="#">
-                                    <img class="is-rounded"
-                                         src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
-                                </a>
                             </div>
-
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
-                                        <br>
-                                        글을 적는 칸
-                                    </p>
-                                </div>
-                                <p><small>가게명:</small> TastyWifi</p>
-                                <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
-                                <p><small>별점:</small> ⭐⭐⭐⭐</p>
-                                <p><span style="color: blue">#맛집</span></p>
->>>>>>> 0c555f278c70bcce07051370e3198ee6dff49dbb
-                            </div>
-                        </article>
-                    </div>
+                            <p><small>가게명:</small> TastyWifi</p>
+                            <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
+                            <p><small>별점:</small> ⭐⭐⭐⭐</p>
+                            <p><span style="color: blue">#맛집</span></p>
+                        </div>
+                    </article>
                 </div>
-<<<<<<< HEAD
             </div>
             <div id="post-box" class="container">
                 <div class="box">
@@ -220,38 +160,19 @@
                                     <br>
                                     글을 적는 칸
                                 </p>
-=======
-                <div id="post-box" class="container">
-                    <div class="box">
-                        <article class="media">
-                            <div class="media-right">
-                                <a class="image is-128x128" href="#">
-                                    <img class="is-rounded"
-                                         src={{ url_for("static", filename="profile_pics/profile_placeholder.png") }} alt="Image">
-                                </a>
                             </div>
-
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <strong>홍길동</strong> <small>@username</small> <small>10분 전</small>
-                                        <br>
-                                        글을 적는 칸
-                                    </p>
-                                </div>
-                                <p><small>가게명:</small> TastyWifi</p>
-                                <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
-                                <p><small>별점:</small> ⭐⭐⭐⭐</p>
-                                <p><span style="color: blue">#맛집</span></p>
->>>>>>> 0c555f278c70bcce07051370e3198ee6dff49dbb
-                            </div>
-                        </article>
-                    </div>
+                            <p><small>가게명:</small> TastyWifi</p>
+                            <p><small>주소:</small> 성영시 현규구 건도동 현웅빌딩 6 </p>
+                            <p><small>별점:</small> ⭐⭐⭐⭐</p>
+                            <p><span style="color: blue">#맛집</span></p>
+                        </div>
+                    </article>
                 </div>
-
             </div>
-        </section>
-    </div>
+
+        </div>
+    </section>
+</div>
 </body>
 </html>
 

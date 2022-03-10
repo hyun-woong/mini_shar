@@ -5,9 +5,10 @@
   
   <div align=center><strong>
 나만 알고 있기 아까운 인생 맛집들을 자랑하고 서로 공유함으로써<br>
-편리하게 추천 맛집들의 정보를 알수 있는 플랫폼입니다.<br>
-  link: http://woong-world.shop/
+편리하게 추천 맛집들의 정보를 알수 있는 플랫폼입니다. 
+  <hr> link: http://woong-world.shop/ </hr>
   </strong></div>
+  <hr></hr>
   
   
 ## ⏳ 프로젝트 기간

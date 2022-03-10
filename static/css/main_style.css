@@ -2,6 +2,7 @@
 .section {
     padding: 1rem 1.5rem;
     max-width: 750px;
+    margin-top: 10px;
     margin: auto;
 }
 
@@ -31,9 +32,13 @@ input::-webkit-calendar-picker-indicator {
 }
 
 .image img {
-    object-fit:cover;
-    width:110%;
-    height:100%;
+    object-fit: cover;
+    width: 110%;
+    height: 100%;
+}
+
+.container{
+    margin-top: 6px;
 }
 
 .section_bar {
@@ -50,3 +55,38 @@ input::-webkit-calendar-picker-indicator {
     width: 95%;
     max-width: 1200px;
 }
+<<<<<<< HEAD
+=======
+
+/*포스팅 카드 안, 코멘트 박스*/
+.get_card {
+    width: 300px;
+    height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_big_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px
+}
+
+.post_btn_background {
+    width: 640px;
+
+}
+
+/*포스팅하기 버튼*/
+.post-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+>>>>>>> c0bb1e70ea8af0d2d921224e29c5564af45e25b2

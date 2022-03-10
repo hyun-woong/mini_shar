@@ -1,481 +1,545 @@
 <!doctype html>
 <html lang="en">
-        <head>
+<head>
 
-            <!-- Webpage Title -->
-            <title>Log In | SWEETER</title>
+    <!-- Webpage Title -->
+    <title>Log In | SWEETER</title>
 
-            <!-- Required meta tags -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            <!-- Bulma CSS -->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-            <!-- Font Awesome CSS -->
-            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Jua&family=Noto+Sans+KR:wght@100&display=swap"
-                  rel="stylesheet">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@100&family=Jua&family=Noto+Sans+KR:wght@100&display=swap"
+          rel="stylesheet">
+
+    {#favicon & ogtag#}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='../static/image/favicon.ico') }}"
+          type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='../static/image/favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="TastyWifi - 나만 알기 아쉬운 맛집 공유 플랫폼"/>
+    <meta property="og:description" content="mini project"/>
+    <meta property="og:image" content="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}"/>
 
 
-            <!-- JS -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
-            <style>
-                body {
-                    background-color: RGBA(232, 52, 78, 0.2);
-                    min-height: 100vh;
+    <style>
+        body {
+            background-color: RGBA(232, 52, 78, 0.2);
+            min-height: 100vh;
+        }
+
+        .banner {
+            width: 100%;
+            height: 350px;
+
+            background-color: white;
+            background-image: url(../static/image/title_image.png);
+
+            background-position: center 25%;
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            cursor: pointer;
+        }
+
+        .section {
+            padding: 1rem 1.5rem;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .pjlogo {
+            padding: 0px 0px 20px 0px;
+            max-width: 750px;
+            margin: 0px 0px 0px 0px;
+        }
+
+
+        .is-sparta {
+            color: #e8344e !important;
+        }
+
+        .button.is-sparta {
+            background-color: #e8344e;
+            border-color: transparent;
+            color: #fff !important;
+        }
+
+        .button.is-sparta.is-outlined {
+            background-color: transparent;
+            border-color: #e8344e;
+            color: #e8344e !important;
+        }
+
+        .help {
+            color: gray;
+        }
+
+
+        .navimg {
+            padding: 0px 0px 0px 0px;
+            max-width: 750px;
+            margin: 0px 0px 0px 0px;
+
+        }
+
+        li {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+        input, select {
+            height: 41px;
+            width: 450px;
+            border-color: gainsboro;
+            border-radius: 5px;
+        }
+
+        .select#yy {
+            margin-top: 10px;
+
+            width: 155px;
+            height: 41px;
+
+        }
+
+        .select#mm {
+            margin-top: 10px;
+
+            width: 143px;
+            height: 41px;
+
+        }
+
+        .select#dd {
+            margin-top: 10px;
+
+            width: 143px;
+            height: 41px;
+
+        }
+
+        .select#gen {
+            margin-top: 10px;
+            margin-bottom: 5px;
+
+        }
+    </style>
+
+    <script>
+        // {% if msg %}
+            //     alert("{{ msg }}")
+            // {% endif %}
+        function sign_in() {
+            let username = $("#input-username").val()
+            let password = $("#input-password").val()
+
+            if (username == "") {
+                $("#help-id-login").text("아이디를 입력해주세요.")
+                $("#input-username").focus()
+                return;
+            } else {
+                $("#help-id-login").text("")
+            }
+
+            if (password == "") {
+                $("#help-password-login").text("비밀번호를 입력해주세요.")
+                $("#input-password").focus()
+                return;
+            } else {
+                $("#help-password-login").text("")
+            }
+            $.ajax({
+                type: "POST",
+                url: "/sign_in",
+                data: {
+                    username_give: username,
+                    password_give: password
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        $.cookie('mytoken', response['token'], {path: '/'});
+                        window.location.replace("/")
+                    } else {
+                        alert(response['msg'])
+                    }
                 }
+            });
+        }
 
-                .banner {
-                    width: 100%;
-                    height: 350px;
+        function sign_up() {
+            let username = $("#input-username").val()
+            let password = $("#input-password").val()
+            let password2 = $("#input-password2").val()
+            let birthyy = $("#birthyy").val()
+            let birthmm = $("#birthmm").val()
+            let birthdd = $("#birthdd").val()
+            let gender = $("#gender").val()
 
-                    background-color: white;
-                    background-image: url(../static/image/title_image.png);
+            console.log(username, password, password2, birthyy, birthmm, birthdd, gender)
 
-                    background-position: center 25%;
-                    background-size: cover;
-                    background-repeat: no-repeat;
+            {#중복검사를 했는지 안했는지 깃테스트용 문구#}
+            if ($("#help-id").hasClass("is-danger")) {
+                alert("아이디를 다시 확인해주세요.")
+                return;
+            } else if (!$("#help-id").hasClass("is-success")) {
+                alert("아이디 중복확인을 해주세요.")
+                return;
+            }
+            {#패스워드 조건 및 확인#}
+            if (password == "") {
+                $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#input-password").focus()
+                return;
+            } else if (!is_password(password)) {
+                $("#help-password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
+                $("#input-password").focus()
+                return
+            } else {
+                $("#help-password").text("사용할 수 있는 비밀번호입니다.").removeClass("is-danger").addClass("is-success")
+            }
+            if (password2 == "") {
+                $("#help-password2").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#input-password2").focus()
+                return;
+            } else if (password2 != password) {
+                $("#help-password2").text("비밀번호가 일치하지 않습니다.").removeClass("is-safe").addClass("is-danger")
+                $("#input-password2").focus()
+                return;
+            } else {
+                $("#help-password2").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
+            }
 
-                    cursor: pointer;
+            if (birthyy == "none") {
+                $("#help-yymmdd").text("출생연도를 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#birthyy").focus()
+                return;
+            }
+
+            if (birthmm == "none") {
+                $("#help-yymmdd").text("출생월을 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#birthmm").focus()
+                return;
+            }
+
+            if (birthdd == "none") {
+                $("#help-yymmdd").text("출생일을 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#birthdd").focus()
+                return;
+
+            } else {
+                $("#help-yymmdd").text("생년월일을 선택하였습니다.").removeClass("is-danger").addClass("is-success")
+            }
+
+            if (gender == "none") {
+                $("#help-gender").text("성별을 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#gender").focus()
+                return;
+            } else {
+                $("#help-gender").text("성별을 선택하였습니다.").removeClass("is-danger").addClass("is-success")
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/sign_up/save",
+                data: {
+                    username_give: username,
+                    password_give: password,
+                    birthyy_give: birthyy,
+                    birthmm_give: birthmm,
+                    birthdd_give: birthdd,
+                    gender_give: gender
+                },
+                success: function (response) {
+                    alert("회원가입을 축하드립니다!")
+                    window.location.replace("/login")
                 }
+            });
 
-                .section {
-                    padding: 1rem 1.5rem;
-                    max-width: 750px;
-                    margin: auto;
-                }
+        }
 
-                .pjlogo {
-                    padding: 0px 0px 20px 0px;
-                    max-width: 750px;
-                    margin: 0px 0px 0px 0px;
-                }
-                
+        function toggle_sign_up() {
+            $("#sign-up-box").toggleClass("is-hidden")
+            $("#div-sign-in-or-up").toggleClass("is-hidden")
+            $("#btn-check-dup").toggleClass("is-hidden")
+            $("#help-id").toggleClass("is-hidden")
+            $("#help-password").toggleClass("is-hidden")
+            $("#help-password2").toggleClass("is-hidden")
+            $("#help-yymmdd").toggleClass("is-hidden")
+            $("#help-yy").toggleClass("is-hidden")
+            $("#help-mm").toggleClass("is-hidden")
+            $("#help-dd").toggleClass("is-hidden")
+            $("#help-gender").toggleClass("is-hidden")
+        }
 
-                .is-sparta {
-                    color: #e8344e !important;
-                }
+        function is_nickname(asValue) {
+            var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
+            {#^(?=.*[a-zA-Z]) 소괄호 - a-z A-Z가 필수포함  [-a-zA-Z0-9_.] 대괄호-a-z A-Z 0-9, _. 등이 포함해서 {2,10} 2자에서 10자 사이 #}
+            return regExp.test(asValue);
+        }
 
-                .button.is-sparta {
-                    background-color: #e8344e;
-                    border-color: transparent;
-                    color: #fff !important;
-                }
+        function is_password(asValue) {
+            var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
+            {#(?=.*\d) (소괄호)필수포함 \d는 숫자를 의미함#}
+            return regExp.test(asValue);
+        }
 
-                .button.is-sparta.is-outlined {
-                    background-color: transparent;
-                    border-color: #e8344e;
-                    color: #e8344e !important;
-                }
+        function check_dup() {
+            let username = $("#input-username").val()
+            let birthyy = $("#birthyy").val()
+            let birthmm = $("#birthmm").val()
+            let birthdd = $("#birthdd").val()
+            let gender = $("#gender").val()
 
-                .help {
-                    color: gray;
-                }
+            console.log(username)
+            if (username == "") {
+                $("#help-id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#input-username").focus()
+                return;
+            }
+
+            if (!is_nickname(username)) {
+                $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
+                $("#input-username").focus()
+                return;
+            }
 
 
-                .navimg {
-                    padding: 0px 0px 0px 0px;
-                    max-width: 750px;
-                    margin: 0px 0px 0px 0px;
+            $("#help-id").addClass("is-loading")
+            $.ajax({
+                {# 중복확인 하는 ajax #}
+                type: "POST",
+                url: "/sign_up/check_dup",
+                data: {
+                    username_give: username
+                },
+                success: function (response) {
 
-                }
-                 li {
-                    list-style: none;
-                    margin: 10px 0;
-                }
-
-                input, select {
-                    height: 41px;
-                    width: 450px;
-                    border-color: gainsboro;
-                    border-radius: 5px;
-                }
-
-                .select#yy {
-                    margin-top: 10px;
-
-                    width: 155px;
-                    height: 41px;
-
-                }
-                .select#mm {
-                    margin-top: 10px;
-
-                    width: 143px;
-                    height: 41px;
-
-                }
-                .select#dd {
-                    margin-top: 10px;
-
-                     width: 143px;
-                    height: 41px;
-
-                }
-                .select#sex {
-                    margin-top: 10px;
-                    margin-bottom: 5px;
-
-                }
-            </style>
-
-            <script>
-                // {% if msg %}
-                //     alert("{{ msg }}")
-                // {% endif %}
-                function sign_in() {
-                    let username = $("#input-username").val()
-                    let password = $("#input-password").val()
-
-                    if (username == "") {
-                        $("#help-id-login").text("아이디를 입력해주세요.")
+                    if (response["exists"]) {
+                        $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
                         $("#input-username").focus()
-                        return;
                     } else {
-                        $("#help-id-login").text("")
+                        $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
                     }
-
-                    if (password == "") {
-                        $("#help-password-login").text("비밀번호를 입력해주세요.")
-                        $("#input-password").focus()
-                        return;
-                    } else {
-                        $("#help-password-login").text("")
-                    }
-                    $.ajax({
-                        type: "POST",
-                        url: "/sign_in",
-                        data: {
-                            username_give: username,
-                            password_give: password
-                        },
-                        success: function (response) {
-                            if (response['result'] == 'success') {
-                                $.cookie('mytoken', response['token'], {path: '/'});
-                                window.location.replace("/")
-                            } else {
-                                alert(response['msg'])
-                            }
-                        }
-                    });
-                }
-
-                function sign_up() {
-                    let username = $("#input-username").val()
-                    {#let nickname = $#}
-                    let password = $("#input-password").val()
-                    let password2 = $("#input-password2").val()
-                    console.log(username, password, password2)
-
-                    {#중복검사를 했는지 안했는지 깃테스트용 문구#}
-                    if ($("#help-id").hasClass("is-danger")) {
-                        alert("아이디를 다시 확인해주세요.")
-                        return;
-                    } else if (!$("#help-id").hasClass("is-success")) {
-                        alert("아이디 중복확인을 해주세요.")
-                        return;
-                    }
-                    {#패스워드 조건 및 확인#}
-                    if (password == "") {
-                        $("#help-password").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
-                        $("#input-password").focus()
-                        return;
-                    } else if (!is_password(password)) {
-                        $("#help-password").text("비밀번호의 형식을 확인해주세요. 영문과 숫자 필수 포함, 특수문자(!@#$%^&*) 사용가능 8-20자").removeClass("is-safe").addClass("is-danger")
-                        $("#input-password").focus()
-                        return
-                    } else {
-                        $("#help-password").text("사용할 수 있는 비밀번호입니다.").removeClass("is-danger").addClass("is-success")
-                    }
-                    if (password2 == "") {
-                        $("#help-password2").text("비밀번호를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
-                        $("#input-password2").focus()
-                        return;
-                    } else if (password2 != password) {
-                        $("#help-password2").text("비밀번호가 일치하지 않습니다.").removeClass("is-safe").addClass("is-danger")
-                        $("#input-password2").focus()
-                        return;
-                    } else {
-                        $("#help-password2").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
-                    }
-                    $.ajax({
-                        type: "POST",
-                        url: "/sign_up/save",
-                        data: {
-                            username_give: username,
-                            password_give: password
-                        },
-                        success: function (response) {
-                            alert("회원가입을 축하드립니다!")
-                            window.location.replace("/login")
-                        }
-                    });
+                    $("#help-id").removeClass("is-loading")
 
                 }
 
-                function toggle_sign_up() {
-                    $("#sign-up-box").toggleClass("is-hidden")
-                    $("#div-sign-in-or-up").toggleClass("is-hidden")
-                    $("#btn-check-dup").toggleClass("is-hidden")
-                    $("#help-id").toggleClass("is-hidden")
-                    $("#help-password").toggleClass("is-hidden")
-                    $("#help-password2").toggleClass("is-hidden")
-                }
 
-                function is_nickname(asValue) {
-                    var regExp = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{2,10}$/;
-                    {#^(?=.*[a-zA-Z]) 소괄호 - a-z A-Z가 필수포함  [-a-zA-Z0-9_.] 대괄호-a-z A-Z 0-9, _. 등이 포함해서 {2,10} 2자에서 10자 사이 #}
-                    return regExp.test(asValue);
-                }
-
-                function is_password(asValue) {
-                    var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
-                    {#(?=.*\d) (소괄호)필수포함 \d는 숫자를 의미함#}
-                    return regExp.test(asValue);
-                }
-
-                function check_dup() {
-                    let username = $("#input-username").val()
-                    console.log(username)
-                    if (username == "") {
-                        $("#help-id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
-                        $("#input-username").focus()
-                        return;
-                    }
-                    if (!is_nickname(username)) {
-                        $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
-                        $("#input-username").focus()
-                        return;
-                    }
-                    $("#help-id").addClass("is-loading")
-                    $.ajax({     {# 중복확인 하는 ajax #}
-                        type: "POST",
-                        url: "/sign_up/check_dup",
-                        data: {
-                            username_give: username
-                        },
-                        success: function (response) {
-
-                            if (response["exists"]) {
-                                $("#help-id").text("이미 존재하는 아이디입니다.").removeClass("is-safe").addClass("is-danger")
-                                $("#input-username").focus()
-                            } else {
-                                $("#help-id").text("사용할 수 있는 아이디입니다.").removeClass("is-danger").addClass("is-success")
-                            }
-                            $("#help-id").removeClass("is-loading")
-
-                        }
-                    });
-                }
+            });
+        }
 
 
+    </script>
 
-            </script>
-
-        </head>
-    <body>
-
+</head>
+<body>
 
 
-    <div class="wrap">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <img class="navimg" src="../static/image/tastywifi_logo.png">
-            </a>
-        </div>
-
-        <div class="banner" onclick="window.location.href = '/'">
-        </div>
+<div class="wrap">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img class="navimg" src="../static/image/tastywifi_logo.png">
+        </a>
     </div>
-        <section class="section">
-            <div class="container">
-                <div class="box" style="max-width: 480px;margin:auto">
-                    <article class="media">
-                        <div class="media-content">
-                            <div class="content">
-                                <div class="pjlogo">
-                                        <img src="../static/image/tastywifi_logo.png">
-                                </div>
-                                <div class="field has-addons">
-                                    <div class="control has-icons-left" style="width:100%">
-                                        <input id="input-username" class="input" type="text" placeholder="아이디">
-                                        <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
-                                    </div>
-                                    <div id="btn-check-dup" class="control is-hidden">
-                                        <button class="button is-sparta" onclick="check_dup()">중복확인</button>
-                                    </div>
 
-                                </div>
-                                <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
-                                <p id="help-id-login" class="help is-danger"></p>
-
-                                <div class="field">
-                                    <div class="control has-icons-left">
-                                        <input id="input-password" class="input" type="password" placeholder="비밀번호">
-                                        <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                                    </div>
-                                    <p id="help-password" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요. 특수문자(!@#$%^&*)도
-                                        사용 가능합니다.</p>
-                                </div>
-
-
+    <div class="banner" onclick="window.location.href = '/'">
+    </div>
+</div>
+<section class="section">
+    <div class="container">
+        <div class="box" style="max-width: 480px;margin:auto">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <div class="pjlogo">
+                            <img src="../static/image/tastywifi_logo.png">
+                        </div>
+                        <div class="field has-addons">
+                            <div class="control has-icons-left" style="width:100%">
+                                <input id="input-username" class="input" type="text" placeholder="아이디">
+                                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
                             </div>
-                            <div id="div-sign-in-or-up" class="has-text-centered">
-                                <nav class="level is-mobile">
-                                    <button class="level-item button is-sparta" onclick="sign_in()">
-                                        로그인
-                                    </button>
-
-                                </nav>
-                                <hr>
-                                <h4 class="mb-3">아직 회원이 아니라면</h4>
-                                <nav class="level is-mobile">
-
-                                    <button class="level-item button is-sparta is-outlined"
-                                            onclick="toggle_sign_up()">
-                                        회원가입하기
-                                    </button>
-                                </nav>
+                            <div id="btn-check-dup" class="control is-hidden">
+                                <button class="button is-sparta" onclick="check_dup()">중복확인</button>
                             </div>
-
-                            <div id="sign-up-box" class="is-hidden">
-                                <div class="mb-5">
-                                    <div class="field">
-                                        <div class="control has-icons-left" style="width:100%">
-                                            <input id="input-password2" class="input" type="password"
-                                                   placeholder="비밀번호 재입력">
-                                            <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
-                                        </div>
-                                        <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
-
-
-                                        <div class="select" id="yy">
-                                            <select>
-                                                <option>== 출생연도 ==</option>
-                                                <option>1990</option>
-                                                <option>1991</option>
-                                                <option>1992</option>
-                                                <option>1993</option>
-                                                <option>1994</option>
-                                                <option>1995</option>
-                                                <option>1996</option>
-                                                <option>1997</option>
-                                                <option>1998</option>
-                                                <option>1999</option>
-                                                <option>2000</option>
-                                                <option>2001</option>
-                                                <option>2002</option>
-                                                <option>2003</option>
-                                                <option>2004</option>
-                                                <option>2005</option>
-                                                <option>2006</option>
-                                                <option>2007</option>
-                                                <option>2008</option>
-                                                <option>2009</option>
-                                                <option>2010</option>
-                                                <option>2011</option>
-                                                <option>2012</option>
-                                                <option>2013</option>
-                                                <option>2014</option>
-                                                <option>2015</option>
-                                                <option>2016</option>
-                                                <option>2017</option>
-                                                <option>2018</option>
-                                                <option>2019</option>
-                                                <option>2020</option>
-                                                <option>2021</option>
-                                                <option>2022</option>
-                                            </select>
-                                        </div>
-                                        <div class="select" id="mm">
-                                            <select>
-                                                <option>== 월 ==</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
-                                            </select>
-                                        </div>
-                                        <div class="select" id="dd">
-                                            <select>
-                                                <option>== 일 ==</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
-                                                <option>13</option>
-                                                <option>14</option>
-                                                <option>15</option>
-                                                <option>16</option>
-                                                <option>17</option>
-                                                <option>18</option>
-                                                <option>19</option>
-                                                <option>20</option>
-                                                <option>21</option>
-                                                <option>22</option>
-                                                <option>23</option>
-                                                <option>24</option>
-                                                <option>25</option>
-                                                <option>26</option>
-                                                <option>27</option>
-                                                <option>28</option>
-                                                <option>29</option>
-                                                <option>30</option>
-                                                <option>31</option>
-
-                                            </select>
-                                        </div>
-                                        <p id="help-yymmdd" class="help is-hidden">출생월일을 선택해 주세요.</p>
-
-
-                                        <div class="select" id="sex">
-                                            <select>
-                                                <option value="sel">== 성별선택 ==</option>
-                                                <option value="m">남자</option>
-                                                <option value="w">여자</option>
-                                            </select>
-                                        </div>
-                                        <p id="help-sex" class="help is-hidden">성별을 선택해 주세요.</p>
-
-
-                                    </div>
-                                </div>
-                                <nav class="level is-mobile">
-                                    <button class="level-item button is-sparta" onclick="sign_up()">
-                                        회원가입
-                                    </button>
-                                    <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">
-                                        취소
-                                    </button>
-                                </nav>
-                            </div>
-
 
                         </div>
-                    </article>
-                </div>
+                        <p id="help-id" class="help is-hidden">아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력 가능합니다.</p>
+                        <p id="help-id-login" class="help is-danger"></p>
 
-            </div>
-        </section>
-    </body>
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input id="input-password" class="input" type="password" placeholder="비밀번호">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <p id="help-password" class="help is-hidden">영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요. 특수문자(!@#$%^&*)도
+                                사용 가능합니다.</p>
+                        </div>
+
+
+                    </div>
+                    <div id="div-sign-in-or-up" class="has-text-centered">
+                        <nav class="level is-mobile">
+                            <button class="level-item button is-sparta" onclick="sign_in()">
+                                로그인
+                            </button>
+
+                        </nav>
+                        <hr>
+                        <h4 class="mb-3">아직 회원이 아니라면</h4>
+                        <nav class="level is-mobile">
+
+                            <button class="level-item button is-sparta is-outlined"
+                                    onclick="toggle_sign_up()">
+                                회원가입하기
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div id="sign-up-box" class="is-hidden">
+                        <div class="mb-5">
+                            <div class="field">
+                                <div class="control has-icons-left" style="width:100%">
+                                    <input id="input-password2" class="input" type="password"
+                                           placeholder="비밀번호 재입력">
+                                    <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                                </div>
+                                <p id="help-password2" class="help is-hidden">비밀번호를 다시 한 번 입력해주세요.</p>
+
+
+                                <div class="select" id="yy">
+                                    <select id="birthyy">
+                                        <option value="none">== 출생연도 ==</option>
+                                        <option value="1990">1990</option>
+                                        <option value="1991">1991</option>
+                                        <option value="1992">1992</option>
+                                        <option value="1993">1993</option>
+                                        <option value="1994">1994</option>
+                                        <option value="1995">1995</option>
+                                        <option value="1996">1996</option>
+                                        <option value="1997">1997</option>
+                                        <option value="1998">1998</option>
+                                        <option value="1999">1999</option>
+                                        <option value="2000">2000</option>
+                                        <option value="2001">2001</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2003">2003</option>
+                                        <option value="2004">2004</option>
+                                        <option value="2005">2005</option>
+                                        <option value="2008">2006</option>
+                                        <option value="2007">2007</option>
+                                        <option value="2008">2008</option>
+                                        <option value="2009">2009</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                    </select>
+                                </div>
+                                <div class="select" id="mm">
+                                    <select id="birthmm">
+                                        <option value="none">== 월 ==</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="select" id="dd">
+                                    <select id="birthdd">
+                                        <option value="none">== 일 ==</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+
+                                    </select>
+                                </div>
+                                <p id="help-yymmdd" class="help is-hidden">출생월일을 선택해 주세요.</p>
+
+
+                                <div class="select" id="gen">
+                                    <select id="gender">
+                                        <option value="none">== 성별선택 ==</option>
+                                        <option value="m">남자</option>
+                                        <option value="w">여자</option>
+                                    </select>
+                                </div>
+                                <p id="help-gender" class="help is-hidden">성별을 선택해 주세요.</p>
+
+
+                            </div>
+                        </div>
+                        <nav class="level is-mobile">
+                            <button class="level-item button is-sparta" onclick="sign_up()">
+                                회원가입
+                            </button>
+                            <button class="level-item button is-sparta is-outlined" onclick="toggle_sign_up()">
+                                취소
+                            </button>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </article>
+        </div>
+
+    </div>
+</section>
+</body>
 </html>

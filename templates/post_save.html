@@ -25,7 +25,7 @@
     <link rel="icon" href="{{ url_for('static', filename='../static/image/favicon.ico') }}" type="image/x-icon">
     <meta property="og:title" content="TastyWifi - 나만 알기 아쉬운 맛집 공유 플랫폼"/>
     <meta property="og:description" content="mini project"/>
-    <meta property="og:image" content="{{ url_for('static', filename='../static/image/800x400.png') }}"/>
+    <meta property="og:image" content="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}"/>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -58,8 +58,7 @@
     <section class="section_bar">
         <div class="container">
             <h2 class="subtitle">
-                <button onclick="sign_out()" class="button is-text" id="posting-btn">Logout
-                </button>
+                <button onclick="sign_out()" class="button is-light" id="posting-btn">Logout</button>
             </h2>
         </div>
     </section>
@@ -113,7 +112,7 @@
         <div class="star">
             <div class="select is-normal">
                 <select id="star">
-                    <option>-------------- 별점을 선택해주세요! --------------</option>
+                    <option>——————— 별점을 선택해주세요! ———————</option>
                     <option>⭐</option>
                     <option>⭐⭐</option>
                     <option>⭐⭐⭐</option>
@@ -122,7 +121,6 @@
                 </select>
             </div>
         </div>
-
     </div>
 </div>
 </body>

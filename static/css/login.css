@@ -1,97 +1,100 @@
-                body {
-                    background-color: RGBA(232, 52, 78, 0.2);
-                    min-height: 100vh;
-                }
+body {
+    background-color: RGBA(232, 52, 78, 0.2);
+    min-height: 100vh;
+}
 
-                .banner {
-                    width: 100%;
-                    height: 350px;
+.banner {
+    width: 100%;
+    height: 350px;
 
-                    background-color: white;
-                    background-image: url(../image/title_image.png);
+    background-color: white;
+    background-image: url(../image/title_image.png);
 
-                    background-position: center 25%;
-                    background-size: cover;
-                    background-repeat: no-repeat;
+    background-position: center 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
 
-                    cursor: pointer;
-                }
+    cursor: pointer;
+}
 
-                .section {
-                    padding: 1rem 1.5rem;
-                    max-width: 750px;
-                    margin: auto;
-                }
+.section {
+    padding: 1rem 1.5rem;
+    max-width: 750px;
+    margin: auto;
+}
 
-                .pjlogo {
-                    padding: 0px 0px 20px 0px;
-                    max-width: 750px;
-                    margin: 0px 0px 0px 0px;
-                }
-
-
-                .is-sparta {
-                    color: #e8344e !important;
-                }
-
-                .button.is-sparta {
-                    background-color: #e8344e;
-                    border-color: transparent;
-                    color: #fff !important;
-                }
-
-                .button.is-sparta.is-outlined {
-                    background-color: transparent;
-                    border-color: #e8344e;
-                    color: #e8344e !important;
-                }
-
-                .help {
-                    color: gray;
-                }
+.pjlogo {
+    padding: 0px 0px 20px 0px;
+    max-width: 750px;
+    margin: 0px 0px 0px 0px;
+}
 
 
-                .navimg {
-                    padding: 0px 0px 0px 0px;
-                    max-width: 750px;
-                    margin: 0px 0px 0px 0px;
+.is-sparta {
+    color: #e8344e !important;
+}
 
-                }
-                 li {
-                    list-style: none;
-                    margin: 10px 0;
-                }
+.button.is-sparta {
+    background-color: #e8344e;
+    border-color: transparent;
+    color: #fff !important;
+}
 
-                input, select {
-                    height: 41px;
-                    width: 450px;
-                    border-color: gainsboro;
-                    border-radius: 5px;
-                }
+.button.is-sparta.is-outlined {
+    background-color: transparent;
+    border-color: #e8344e;
+    color: #e8344e !important;
+}
 
-                .select#yy {
-                    margin-top: 10px;
+.help {
+    color: gray;
+}
 
-                    width: 155px;
-                    height: 41px;
 
-                }
-                .select#mm {
-                    margin-top: 10px;
+.navimg {
+    padding: 0px 0px 0px 0px;
+    max-width: 750px;
+    margin: 0px 0px 0px 0px;
 
-                    width: 143px;
-                    height: 41px;
+}
 
-                }
-                .select#dd {
-                    margin-top: 10px;
+li {
+    list-style: none;
+    margin: 10px 0;
+}
 
-                     width: 143px;
-                    height: 41px;
+input, select {
+    height: 41px;
+    width: 450px;
+    border-color: gainsboro;
+    border-radius: 5px;
+}
 
-                }
-                .select#sex {
-                    margin-top: 10px;
-                    margin-bottom: 5px;
+.select#yy {
+    margin-top: 10px;
 
-                }
+    width: 155px;
+    height: 41px;
+
+}
+
+.select#mm {
+    margin-top: 10px;
+    width: 143px;
+    height: 41px;
+
+}
+
+.select#dd {
+    margin-top: 10px;
+
+    width: 143px;
+    height: 41px;
+
+}
+
+.select#sex {
+    margin-top: 10px;
+    margin-bottom: 5px;
+
+}

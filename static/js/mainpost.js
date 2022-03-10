@@ -36,22 +36,23 @@ function toggle_like(post_id, type) {
     }
 }
 
-function post() {
-    let comment = $("#textarea-post").val()
-    let today = new Date().toISOString()
-    $.ajax({
-        type: "POST",
-        url: "/posting",
-        data: {
-            comment_give: comment,
-            date_give: today
-        },
-        success: function (response) {
-            $("#modal-post").removeClass("is-active")
-            window.location.reload()
-        }
-    })
-}
+//
+// function post() {
+//     let comment = $("#textarea-post").val()
+//     let today = new Date().toISOString()
+//     $.ajax({
+//         type: "POST",
+//         url: "/posting",
+//         data: {
+//             comment_give: comment,
+//             date_give: today
+//         },
+//         success: function (response) {
+//             $("#modal-post").removeClass("is-active")
+//             window.location.reload()
+//         }
+//     })
+// }
 
 // 포스팅 시간 나타내기
 
@@ -109,7 +110,6 @@ function get_posts(username) {
                     let time_before = time2str(time_post)
                     let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
                     let count_heart = post['count_heart']
-                    const file_url = "/static/image/"
                     let html_temp = `<div class="box" id="${post["_id"]}">
                                         <article class="media">
 

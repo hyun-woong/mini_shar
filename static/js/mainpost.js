@@ -131,8 +131,8 @@ function get_posts(username) {
                                             </div>
  
                                             <div class="media-content">
-                                                <div>     
-                                                        <span>${post['post_comment']}</span>
+                                                <div class="get_card" style="font-family: 'Jua', sans-serif;font-size: medium;">    
+                                                    <span>${post['post_comment']}</span>
                                                 </div>
                                             </div>
                                             <div class="media-right">

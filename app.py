@@ -78,14 +78,22 @@ def sign_in():
 def sign_up():
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
+    birthyy_receive = request.form['birthyy_give']
+    birthmm_receive = request.form['birthmm_give']
+    birthdd_receive = request.form['birthdd_give']
+    gender_receive = request.form['gender_give']
     password_hash = hashlib.sha256(password_receive.encode('utf-8')).hexdigest()
     doc = {
-        "username": username_receive,  # 아이디
-        "password": password_hash,  # 비밀번호
-        "profile_name": username_receive,  # 프로필 이름 기본값은 아이디
-        "profile_pic": "",  # 프로필 사진 파일 이름
-        "profile_pic_real": "profile_pics/profile_placeholder.png",  # 프로필 사진 기본 이미지
-        "profile_info": ""  # 프로필 한 마디
+        "username": username_receive,                               # 아이디
+        "password": password_hash,                                  # 비밀번호
+        "birthyy" : birthyy_receive,                                # 출생년도
+        "birthmm": birthmm_receive,                                 # 출생월
+        "birthdd": birthdd_receive,                                 # 출생일
+        "gender": gender_receive,                                   # 성별
+        "profile_name": username_receive,                           # 프로필 이름 기본값은 아이디
+        "profile_pic": "",                                          # 프로필 사진 파일 이름
+        "profile_pic_real": "profile_pics/profile_placeholder.png", # 프로필 사진 기본 이미지
+        "profile_info": ""                                          # 프로필 한 마디
     }
     db.users.insert_one(doc)
     return jsonify({'result': 'success'})

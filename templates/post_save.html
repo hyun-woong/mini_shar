@@ -19,6 +19,14 @@
     {#    main_style CSS#}
     <link rel="stylesheet" type="text/css" href="../static/css/main_style.css">
 
+    {#favicon & ogtag#}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='../static/image/favicon.ico') }}"
+          type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='../static/image/favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="TastyWifi - 나만 알기 아쉬운 맛집 공유 플랫폼"/>
+    <meta property="og:description" content="mini project"/>
+    <meta property="og:image" content="{{ url_for('static', filename='../static/image/800x400.png') }}"/>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -114,6 +122,7 @@
                 </select>
             </div>
         </div>
+
     </div>
 </div>
 </body>

@@ -5,9 +5,10 @@
   
   <div align=center><strong>
 나만 알고 있기 아까운 인생 맛집들을 자랑하고 서로 공유함으로써<br>
-편리하게 추천 맛집들의 정보를 알수 있는 플랫폼입니다.<br>
-  link: 준비 중... 
+편리하게 추천 맛집들의 정보를 알수 있는 플랫폼입니다. 
+  <hr> link: http://woong-world.shop/ </hr>
   </strong></div>
+  <hr></hr>
   
   
 ## ⏳ 프로젝트 기간
@@ -15,11 +16,11 @@
   
   
 ## 🎥 시연영상
-<div align=center><strong> link: 준비 중...</strong></div>
+<div align=center><strong> link: https://youtu.be/2Di3ZUv-WV4</strong></div>
 
   
 ## 🌱 프로젝트 초안
-<div align=center><strong>https://whyyougd.tistory.com/5.</strong></div>
+<div align=center><strong> link: https://whyyougd.tistory.com/5.</strong></div>
 
 
 ## 👫 팀원

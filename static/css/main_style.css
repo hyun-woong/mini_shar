@@ -46,6 +46,7 @@ input::-webkit-calendar-picker-indicator {
     margin: auto;
     float: right;
     padding-bottom: 30px;
+    font-family: "SEBANG_Gothic_Bold";
 }
 
 .mycards {
@@ -85,3 +86,4 @@ input::-webkit-calendar-picker-indicator {
     align-items: end;
     justify-content: center;
 }
+>>>>>>> c0bb1e70ea8af0d2d921224e29c5564af45e25b2

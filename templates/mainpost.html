@@ -21,6 +21,10 @@
 
     {#    main_style CSS#}
     <link rel="stylesheet" type="text/css" href="../static/css/main_style.css">
+    {#    구글폰트#}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -49,33 +53,37 @@
 <body>
 <div class="wrap">
     <!-- 상단 로고 네비게이션 바-->
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
-            </a>
-        </div>
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
+        </a>
+    </div>
     {#        logout 버튼#}
-        <section class="section_bar">
-            <div class="container">
-                <h2 class="subtitle">
-                    <button onclick="sign_out();" class="button is-text" id="posting-btn">Logout
-                    </button>
-                </h2>
-            </div>
-        </section>
+    <section class="section_bar">
+        <div class="container">
+            <h2 class="subtitle">
+                <button onclick="sign_out()" class="button is-light" id="posting-btn">Logout</button>
+            </h2>
+        </div>
+    </section>
 
     <!--배너-->
     <div class="banner" onclick="window.location.href = '/'">
     </div>
 
+    {#    포스팅 추가하기 버튼#}
+    <div class="btn_big_wrap">
+        <div class="post_btn_background">
+            <div class="post-btn">
+                <button onclick="window.location.href='post_save'" class="button is-primary" id="posting-btn">포스팅 추가하기
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- 섹션  -->
     <section class="section_bar">
         <div class="container">
-
-            <h2 class="subtitle">
-                <button onclick="window.location.href='post_save'" class="button is-primary" id="posting-btn">포스팅 추가하기
-                </button>
-            </h2>
         </div>
     </section>
 

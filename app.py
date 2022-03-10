@@ -6,7 +6,6 @@ import jwt
 import datetime
 import hashlib
 from flask import Flask, render_template, jsonify, request, redirect, url_for
-from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
@@ -18,12 +17,6 @@ SECRET_KEY = 'SPARTA'
 client = MongoClient('mongodb+srv://sparta:sparta@cluster0.whvqu.mongodb.net/cluster0?retryWrites=true&w=majority',
                      tlsCAFile=ca)
 db = client.dbsparta
-
-
-#
-# client = MongoClient('내AWS아이피', 27017, username="아이디", password="비밀번호")
-# db = client.dbsparta_plus_week4
-
 
 @app.route('/')
 def home():
@@ -112,54 +105,6 @@ def check_dup():
     exists = bool(db.users.find_one({"username": username_receive}))
     return jsonify({'result': 'success', 'exists': exists})
 
-
-# @app.route('/update_profile', methods=['POST'])
-# def save_img():
-#     token_receive = request.cookies.get('mytoken')
-#     try:
-#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#         username = payload["id"]
-#         name_receive = request.form["name_give"]
-#         about_receive = request.form["about_give"]
-#         new_doc = {
-#             "profile_name": name_receive,
-#             "profile_info": about_receive
-#         }
-#         if 'file_give' in request.files:
-#             file = request.files["file_give"]
-#             filename = secure_filename(file.filename)
-#             extension = filename.split(".")[-1]
-#             file_path = f"profile_pics/{username}.{extension}"
-#             file.save("./static/"+file_path)
-#             new_doc["profile_pic"] = filename
-#             new_doc["profile_pic_real"] = file_path
-#         db.users.update_one({'username': payload['id']}, {'$set':new_doc})
-#         return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
-#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-#         return redirect(url_for("home"))
-
-
-# @app.route('/posting', methods=['POST'])
-# def posting():
-#     token_receive = request.cookies.get('mytoken')
-#     try:
-#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#         user_info = db.users.find_one({"username": payload["id"]})
-#         comment_receive = request.form["comment_give"]
-#         date_receive = request.form["date_give"]
-#         doc = {
-#             "username": user_info["username"],
-#             "profile_name": user_info["profile_name"],
-#             "profile_pic_real": user_info["profile_pic_real"],
-#             "comment": comment_receive,
-#             "date": date_receive
-#         }
-#         db.posts.insert_one(doc)
-#         return jsonify({"result": "success", 'msg': '포스팅 성공'})
-#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-#         return redirect(url_for("home"))
-
-
 @app.route("/get_posts", methods=['GET'])
 def get_posts():
     token_receive = request.cookies.get('mytoken')
@@ -184,16 +129,6 @@ def get_posts():
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
-    #     for post in posts:
-    #         post["_id"] = str(post["_id"])
-
-    #     return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", 'posts': posts})
-    # except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-    #     return redirect(url_for("home"))
-
-
-#
-#
 @app.route('/update_like', methods=['POST'])
 # 좋아요 업데이트 및 삭제 코드
 def update_like():

@@ -40,7 +40,7 @@ function posting() {
     form_data.append('comment_give', comment);
     form_data.append('star_give', star);
     form_data.append('tag_give', tag);
-    form_data.append('date_give',today);
+    form_data.append('date_give', today);
 
 
     $.ajax({
@@ -59,8 +59,8 @@ function posting() {
 
 
 // 업로드한 이미지 파일 미리보기
-function readURL(input){
-    if (input.files && input.files[0]){
+function readURL(input) {
+    if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#blah').attr('src', e.target.result);

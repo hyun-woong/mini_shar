@@ -16,11 +16,11 @@
   
   
 ## 🎥 시연영상
-<div align=center><strong> link: 준비 중...</strong></div>
+<div align=center><strong> link: https://youtu.be/2Di3ZUv-WV4</strong></div>
 
   
 ## 🌱 프로젝트 초안
-<div align=center><strong>https://whyyougd.tistory.com/5.</strong></div>
+<div align=center><strong> link: https://whyyougd.tistory.com/5.</strong></div>
 
 
 ## 👫 팀원

@@ -36,24 +36,6 @@ function toggle_like(post_id, type) {
     }
 }
 
-//
-// function post() {
-//     let comment = $("#textarea-post").val()
-//     let today = new Date().toISOString()
-//     $.ajax({
-//         type: "POST",
-//         url: "/posting",
-//         data: {
-//             comment_give: comment,
-//             date_give: today
-//         },
-//         success: function (response) {
-//             $("#modal-post").removeClass("is-active")
-//             window.location.reload()
-//         }
-//     })
-// }
-
 // 포스팅 시간 나타내기
 
 function time2str(date) {

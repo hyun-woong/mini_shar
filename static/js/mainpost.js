@@ -131,7 +131,7 @@ function get_posts(username) {
  
                                             <div class="media-content">
                                                 <div>     
-                                                        <span>${post['post_comment']}</span>
+                                                        ${post['post_comment']}
                                                 </div>
                                             </div>
                                             <div class="media-right">

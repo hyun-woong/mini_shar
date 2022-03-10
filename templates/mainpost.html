@@ -47,49 +47,50 @@
 
 </head>
 <body>
-<div class="wrap">
-    <!-- 상단 로고 네비게이션 바-->
-        <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-                <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
-            </a>
+    <div class="wrap">
+        <!-- 상단 로고 네비게이션 바-->
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}">
+                </a>
+            </div>
+
+            <section class="section_bar">
+                <div class="container">
+                    <h2 class="subtitle">
+                        <button onclick="sign_out();" class="button is-text" id="posting-btn">Logout
+                        </button>
+                    </h2>
+                </div>
+            </section>
+
+        <!--배너-->
+        <div class="banner" onclick="window.location.href = '/'">
         </div>
-    {#        logout 버튼#}
+
+        <!-- 섹션  -->
         <section class="section_bar">
             <div class="container">
+
                 <h2 class="subtitle">
-                    <button onclick="sign_out();" class="button is-text" id="posting-btn">Logout
+                    <button onclick="window.location.href='post_save'" class="button is-primary" id="posting-btn">포스팅 추가하기
                     </button>
                 </h2>
             </div>
         </section>
 
-    <!--배너-->
-    <div class="banner" onclick="window.location.href = '/'">
-    </div>
-
-    <!-- 섹션  -->
-    <section class="section_bar">
-        <div class="container">
-
-            <h2 class="subtitle">
-                <button onclick="window.location.href='post_save'" class="button is-primary" id="posting-btn">포스팅 추가하기
-                </button>
-            </h2>
-        </div>
-    </section>
-
-    <!--  포스터 -->
-    <section class="section">
-        <div class="mycards">
-            <div id="post-box" class="container">
-                <div class="box">
+        <!--  포스터 -->
+        <section class="section">
+            <div class="mycards">
+                <div id="post-box" class="container">
+                    <div class="box">
+                    </div>
                 </div>
-            </div>
 
-        </div>
-    </section>
-</div>
+            </div>
+        </section>
+
+    </div>
 </body>
 </html>
 

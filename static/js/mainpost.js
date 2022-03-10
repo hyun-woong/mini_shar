@@ -14,7 +14,6 @@ function toggle_like(post_id, type) {
             success: function (response) {
                 console.log("unlike")
                 $i_like.addClass("fa-heart-o").removeClass("fa-heart")
-                $i_like.addClass("fa-heart-o").removeClass("fa-heart")
                 $a_like.find("span.like-num").text(num2str(response["count"]))
             }
         })
@@ -108,8 +107,8 @@ function get_posts(username) {
                     let file = posts[i]['post_file']
                     let time_post = new Date(post["date"])
                     let time_before = time2str(time_post)
-                    // let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
-                    // let count_heart = post['count_heart']
+                    let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
+                    let count_heart = post['count_heart']
                     const file_url = "/static/image/"
                     let html_temp = `<div class="box" id="${post["_id"]}">
                                         <article class="media">
@@ -117,7 +116,7 @@ function get_posts(username) {
                                             <div class="media-content">
                                                 <div class="content">
                                                     <p>
-                                                        <strong class="is-sparta">${post['username']}</strong> <small>@username</small> 
+                                                        <strong>${post['username']}</strong> <small>@${post['username']}</small> 
                                                         <br>
                                                     <small>${post['post_title']}</small></p>
                                                 </div>
@@ -136,7 +135,21 @@ function get_posts(username) {
                                                         <span>${post['post_comment']}</span>
                                                 </div>
                                             </div>
-                                            <div class="media-right"><small>${time_before}</small></div>
+                                            <div class="media-right">
+                                                <div class="content">
+                                                    <small>${time_before}</small>
+                                                    <!-- 좋아요 -->
+                                                     <nav class="level is-mobile">
+                                                        <div class="level-left">
+                                                            <a class="level-item is-sparta" aria-label="heart" onclick="toggle_like('${post['_id']}', 'heart')">
+                                                                <span class="icon is-small"><i class="fa ${class_heart}"
+                                                                                               aria-hidden="true"></i></span>❤️<span class="like-num">${num2str(count_heart)}</span>
+                                                            </a>
+                                                        </div>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                            
                                         </article>
                                     </div>`
                     $("#post-box").append(html_temp)

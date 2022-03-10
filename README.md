@@ -29,4 +29,4 @@
 - 심현웅
 
 # 🚩
-<div align=right><small>written by GD Lee</small></div>
+<div align=right><small>written by GD</small></div>

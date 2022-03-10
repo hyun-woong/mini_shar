@@ -170,14 +170,15 @@ def get_posts():
         #         ID 값은 누가 해당 게시물에 좋아요 등을 눌렀는지 확인할 때 필요
         for post in posts:
             post["_id"] = str(post["_id"])
+            post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
+            post["heart_by_me"] = bool(db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
         return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", 'posts': posts})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
     #     for post in posts:
     #         post["_id"] = str(post["_id"])
-    #         post["count_heart"] = db.likes.count_documents({"post_id": post["_id"], "type": "heart"})
-    #         post["heart_by_me"] = bool(db.likes.find_one({"post_id": post["_id"], "type": "heart", "username": payload['id']}))
+
     #     return jsonify({"result": "success", "msg": "포스팅을 가져왔습니다.", 'posts': posts})
     # except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
     #     return redirect(url_for("home"))
@@ -185,29 +186,29 @@ def get_posts():
 
 #
 #
-# @app.route('/update_like', methods=['POST'])
-# # 좋아요 업데이트 및 삭제 코드
-# def update_like():
-#     token_receive = request.cookies.get('mytoken')
-#     try:
-#         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#         user_info = db.users.find_one({"username": payload["id"]})
-#         post_id_receive = request.form["post_id_give"]
-#         type_receive = request.form["type_give"]
-#         action_receive = request.form["action_give"]
-#         doc = {
-#             "post_id": post_id_receive,
-#             "username": user_info["username"],
-#             "type": type_receive
-#         }
-#         if action_receive == "like":
-#             db.likes.insert_one(doc)
-#         else:
-#             db.likes.delete_one(doc)
-#         count = db.likes.count_documents({"post_id": post_id_receive, "type": type_receive})
-#         return jsonify({"result": "success", 'msg': 'updated', "count": count})
-#     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-#         return redirect(url_for("home"))
+@app.route('/update_like', methods=['POST'])
+# 좋아요 업데이트 및 삭제 코드
+def update_like():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]})
+        post_id_receive = request.form["post_id_give"]
+        type_receive = request.form["type_give"]
+        action_receive = request.form["action_give"]
+        doc = {
+            "post_id": post_id_receive,
+            "username": user_info["username"],
+            "type": type_receive
+        }
+        if action_receive == "like":
+            db.likes.insert_one(doc)
+        else:
+            db.likes.delete_one(doc)
+        count = db.likes.count_documents({"post_id": post_id_receive, "type": type_receive})
+        return jsonify({"result": "success", 'msg': 'updated', "count": count})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
 
 # mainpost 페이지에서 포스팅 추가하기 버튼을 눌렀을 때, post_save.html로 넘어가는 역할
 @app.route('/post_save', methods=['GET'])

@@ -82,7 +82,7 @@ function num2str(count) {
         return parseInt(count / 100) / 10 + "k"
     }
     if (count == 0) {
-        return ""
+        return "0"
     }
     return count
 }

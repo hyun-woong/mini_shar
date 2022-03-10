@@ -105,6 +105,7 @@ function get_posts(username) {
                 let posts = response["posts"]
                 for (let i = 0; i < posts.length; i++) {
                     let post = posts[i]
+                    let file = posts[i]['post_file']
                     let time_post = new Date(post["date"])
                     let time_before = time2str(time_post)
                     // let class_heart = post['heart_by_me'] ? "fa-heart" : "fa-heart-o"
@@ -123,7 +124,7 @@ function get_posts(username) {
                                                 <div class="media-left">
                                                 <a class="image is-128x128" href="#">
                                                     <img class="is-square"
-                                                         src="/static/image/${post['post_file']}" alt="Image">
+                                                         src="/static/image/${file}" alt="Image">
                                                 </a>
                                                 </div>
                                                 <p><small>평가:</small> <small>${post['post_star']}</small><br> 
@@ -147,7 +148,7 @@ function get_posts(username) {
 
 // 로그아웃
 function sign_out() {
-            $.removeCookie('mytoken', {path: '/'});
-            alert('로그아웃!')
-            window.location.href = "login"
-        }
+    $.removeCookie('mytoken', {path: '/'});
+    alert('로그아웃!')
+    window.location.href = "login"
+}

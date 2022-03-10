@@ -238,8 +238,10 @@ def save_post():
         star = request.form['star_give']
         date_receive = request.form['date_give']
 
+        # 파일에 '.' 포함되어 있으면 제대로 확장자를 가져 올 수 없을 수 있기 떄문에 맨 끝단의 '.'으로 쪼갠다는 의미
         extension = file.filename.split('.')[-1]
 
+      # 파일명이 중복되지 않게 현재시간을 활용하여 파일명을 정의
         today = datetime.now()
         mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
 

@@ -19,6 +19,14 @@
     {#    main_style CSS#}
     <link rel="stylesheet" type="text/css" href="../static/css/main_style.css">
 
+    {#favicon & ogtag#}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='../static/image/favicon.ico') }}"
+          type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='../static/image/favicon.ico') }}" type="image/x-icon">
+    <meta property="og:title" content="TastyWifi - 나만 알기 아쉬운 맛집 공유 플랫폼"/>
+    <meta property="og:description" content="mini project"/>
+    <meta property="og:image" content="{{ url_for('static', filename='../static/image/tastywifi_logo.png') }}"/>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -47,14 +55,14 @@
         </a>
     </div>
     {#        logout 버튼#}
-        <section class="section_bar">
-            <div class="container">
-                <h2 class="subtitle">
-                    <button onclick="sign_out()" class="button is-text" id="posting-btn">Logout
-                    </button>
-                </h2>
-            </div>
-        </section>
+    <section class="section_bar">
+        <div class="container">
+            <h2 class="subtitle">
+                <button onclick="sign_out()" class="button is-text" id="posting-btn">Logout
+                </button>
+            </h2>
+        </div>
+    </section>
     {#    상단에 배너 이미지를 누르면 메인페이지로 되돌아감#}
     <div class="banner" onclick="window.location.href = '/'">
     </div>
@@ -115,24 +123,24 @@
             </div>
         </div>
 
-<!--{#        해시태그 입력 박스#}-->
-<!--        <div class="tag_input">-->
-<!--            <input id="tag" class="input is-primary" type="text" placeholder="#해시태그">-->
-<!--        </div>-->
+        <!--{#        해시태그 입력 박스#}-->
+        <!--        <div class="tag_input">-->
+        <!--            <input id="tag" class="input is-primary" type="text" placeholder="#해시태그">-->
+        <!--        </div>-->
 
-<!--{#        해시태그를 입력 후 엔터를 누르면 아래 아이콘으로 표시#}-->
-<!--        <div class="tag_icon">-->
-<!--            <div class="tags are-medium">-->
-<!--                <span class="tag is-normal">#해시태그</span>-->
-<!--                <span class="tag is-normal">#해시태그</span>-->
-<!--                <span class="tag is-normal">#해시태그</span>-->
-<!--                <span class="tag is-normal">#해시태그</span>-->
-<!--                <span class="tag is-normal">#해시태그</span>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+        <!--{#        해시태그를 입력 후 엔터를 누르면 아래 아이콘으로 표시#}-->
+        <!--        <div class="tag_icon">-->
+        <!--            <div class="tags are-medium">-->
+        <!--                <span class="tag is-normal">#해시태그</span>-->
+        <!--                <span class="tag is-normal">#해시태그</span>-->
+        <!--                <span class="tag is-normal">#해시태그</span>-->
+        <!--                <span class="tag is-normal">#해시태그</span>-->
+        <!--                <span class="tag is-normal">#해시태그</span>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
-</div>
+    </div>
 </div>
 </body>
 </html>

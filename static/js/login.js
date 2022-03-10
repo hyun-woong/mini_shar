@@ -1,4 +1,4 @@
-            function sign_in() {
+function sign_in() {
             let username = $("#input-username").val()
             let password = $("#input-password").val()
 
@@ -39,7 +39,12 @@
             let username = $("#input-username").val()
             let password = $("#input-password").val()
             let password2 = $("#input-password2").val()
-            console.log(username, password, password2)
+            let birthyy = $("#birthyy").val()
+            let birthmm = $("#birthmm").val()
+            let birthdd = $("#birthdd").val()
+            let gender = $("#gender").val()
+
+            console.log(username, password, password2, birthyy, birthmm, birthdd, gender)
 
             // {#중복검사를 했는지 안했는지 깃테스트용 문구#}
             if ($("#help-id").hasClass("is-danger")) {
@@ -72,12 +77,46 @@
             } else {
                 $("#help-password2").text("비밀번호가 일치합니다.").removeClass("is-danger").addClass("is-success")
             }
+
+            if (birthyy == "none") {
+                $("#help-yymmdd").text("출생연도를 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#birthyy").focus()
+                return;
+            }
+
+            if (birthmm == "none") {
+                $("#help-yymmdd").text("출생월을 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#birthmm").focus()
+                return;
+            }
+
+            if (birthdd == "none") {
+                $("#help-yymmdd").text("출생일을 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#birthdd").focus()
+                return;
+
+            } else {
+                $("#help-yymmdd").text("생년월일을 선택하였습니다.").removeClass("is-danger").addClass("is-success")
+            }
+
+            if (gender == "none") {
+                $("#help-gender").text("성별을 선택해주세요.").removeClass("is-safe").addClass("is-danger")
+                $("#gender").focus()
+                return;
+            } else {
+                $("#help-gender").text("성별을 선택하였습니다.").removeClass("is-danger").addClass("is-success")
+            }
+
             $.ajax({
                 type: "POST",
                 url: "/sign_up/save",
                 data: {
                     username_give: username,
-                    password_give: password
+                    password_give: password,
+                    birthyy_give: birthyy,
+                    birthmm_give: birthmm,
+                    birthdd_give: birthdd,
+                    gender_give: gender
                 },
                 success: function (response) {
                     alert("회원가입을 축하드립니다!")
@@ -94,6 +133,11 @@
             $("#help-id").toggleClass("is-hidden")
             $("#help-password").toggleClass("is-hidden")
             $("#help-password2").toggleClass("is-hidden")
+            $("#help-yymmdd").toggleClass("is-hidden")
+            $("#help-yy").toggleClass("is-hidden")
+            $("#help-mm").toggleClass("is-hidden")
+            $("#help-dd").toggleClass("is-hidden")
+            $("#help-gender").toggleClass("is-hidden")
         }
 
         function is_nickname(asValue) {
@@ -110,17 +154,25 @@
 
         function check_dup() {
             let username = $("#input-username").val()
+            let birthyy = $("#birthyy").val()
+            let birthmm = $("#birthmm").val()
+            let birthdd = $("#birthdd").val()
+            let gender = $("#gender").val()
+
             console.log(username)
             if (username == "") {
                 $("#help-id").text("아이디를 입력해주세요.").removeClass("is-safe").addClass("is-danger")
                 $("#input-username").focus()
                 return;
             }
+
             if (!is_nickname(username)) {
                 $("#help-id").text("아이디의 형식을 확인해주세요. 영문과 숫자, 일부 특수문자(._-) 사용 가능. 2-10자 길이").removeClass("is-safe").addClass("is-danger")
                 $("#input-username").focus()
                 return;
             }
+
+
             $("#help-id").addClass("is-loading")
             $.ajax({
                 // {# 중복확인 하는 ajax #}
@@ -140,5 +192,7 @@
                     $("#help-id").removeClass("is-loading")
 
                 }
+
+
             });
         }
